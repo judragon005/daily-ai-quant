@@ -11,10 +11,7 @@
 
 ### Triage labels
 採用 5 大標準分流標籤（含繁體中文雙語標記）：
-eeds-triage、
-eeds-info、
-eady-for-agent、
-eady-for-human、wontfix。詳見 docs/agents/triage-labels.md。
+`needs-triage`、`needs-info`、`ready-for-agent`、`ready-for-human`、`wontfix`。詳見 docs/agents/triage-labels.md。
 
 ### Domain docs
 採用單一上下文 (Single-context) 佈局，通用術語定義於根目錄 GLOSSARY.md，架構決策紀錄於 docs/adr/。詳見 docs/agents/domain.md。

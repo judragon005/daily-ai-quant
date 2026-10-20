@@ -1,15 +1,11 @@
-# Triage Label Vocabulary (繁體中文雙語規範)
+# 分流標籤規範 (Triage Label Vocabulary)
 
-本專案採用 Matt Pocock 體系之 5 大標準分類角色標籤，並標註繁體中文定義：
+本專案遵循 [80% 簡化技術中文規範 (STE-TW)](../standards/simplified-technical-chinese.md)。
 
-| 標籤名稱 (GitHub Label) | 中文角色名稱 | 定義與觸發時機 |
+| 標籤名稱 | 中文標籤 | 定義與觸發條件 |
 | :--- | :--- | :--- |
-| 
-eeds-triage | **待分流審核** | 新建立的 Issue 或需求，尚未經過範疇與優先級評估。 |
-| 
-eeds-info | **需補充資訊** | 需求描述模糊或缺乏關鍵邊界，需等待人類補充。 |
-| 
-eady-for-agent | **可由 AI 開發** | 規格對齊完畢且驗收標準清晰，AI Agent 可直接以 TDD 模式開始實作。 |
-| 
-eady-for-human | **需人類介入** | 涉及機密金鑰、付費驗證或重大人事/商業決策，AI 嚴禁越權，需人類親自處理。 |
-| wontfix | **不予處理** | 違反 KISS 原則、過度工程化或超出本專案範疇之無效需求。 |
+| `needs-triage` | **待分流審核** | 新建立之 Issue 或需求。尚未評估範疇與優先順序。 |
+| `needs-info` | **需補充資訊** | 需求描述模糊或缺乏邊界。等待人員補充細節。 |
+| `ready-for-agent` | **可由 AI 開發** | 規格對齊完畢且驗收標準清晰。AI 可以直接以 TDD 模式開始實作。 |
+| `ready-for-human` | **需人類介入** | 涉及機密金鑰配置、付費驗證或重大商業決策。需由人員手動處理。 |
+| `wontfix` | **不予處理** | 違反 KISS 原則、過度工程化或超出專案範疇之需求。 |
