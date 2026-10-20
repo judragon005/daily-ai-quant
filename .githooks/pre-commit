@@ -1,0 +1,36 @@
+#!/bin/sh
+# ==============================================================================
+# 本地 Git Pre-Commit 門禁護欄
+# 功能：
+# 1. 強制禁止在 master / main 主線分支直接 commit
+# 2. 阻斷敏感檔案（如 .env）被誤提交
+# ==============================================================================
+
+# 1. 取得當前分支名稱
+current_branch=$(git symbolic-ref --short HEAD 2>/dev/null)
+
+if [ "$current_branch" = "master" ] || [ "$current_branch" = "main" ]; then
+    echo "===================================================================="
+    echo "❌ [Git 門禁阻斷] 禁止直接在主線分支 ($current_branch) 上進行提交！"
+    echo "👉 請建立或切換至特性/修復分支進行開發："
+    echo "   git checkout -b feature/<功能名稱>"
+    echo "   git checkout -b fix/<修復名稱>"
+    echo "===================================================================="
+    exit 1
+fi
+
+# 2. 防範敏感設定檔被暫存 (Staged)
+staged_files=$(git diff --cached --name-only)
+for file in $staged_files; do
+    case "$file" in
+        *.env*|*id_rsa*|*secret*|*.pem)
+            echo "===================================================================="
+            echo "❌ [安全防護阻斷] 偵測到疑似包含敏感憑證的檔案：$file"
+            echo "👉 請執行 git reset HEAD $file 移出暫存區，確保帳號與密鑰安全！"
+            echo "===================================================================="
+            exit 1
+            ;;
+    esac
+done
+
+exit 0

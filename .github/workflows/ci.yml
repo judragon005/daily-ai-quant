@@ -1,0 +1,49 @@
+name: 代碼自動整合檢查門禁 (CI)
+
+# 依據 GitHub Acceptable Use Policy，嚴格控制觸發時機與資源消耗
+on:
+  pull_request:
+    branches: [ master ]
+  push:
+    branches:
+      - 'feature/**'
+      - 'fix/**'
+      - 'refactor/**'
+
+# 啟用併發防護：同一分支有新提交時，自動取消進行中的舊任務，節省 Actions 免費配額
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+# 最小權限原則：僅賦予代碼讀取權限，杜絕潛在越權漏洞
+permissions:
+  contents: read
+
+jobs:
+  code-quality-gate:
+    name: 程式碼品質與單元測試門禁
+    runs-on: ubuntu-latest
+    timeout-minutes: 5 # 嚴格限制執行上限，防止死鎖浪費額度
+
+    steps:
+      - name: 檢出專案代碼
+        uses: actions/checkout@v4
+
+      - name: 配置 Python 3.11 環境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 安裝相依套件
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: Python 核心語法完整性校驗
+        run: |
+          python -m compileall src/ tests/ main.py
+
+      - name: 執行單元測試套件
+        run: |
+          python -m pytest tests/ -v
