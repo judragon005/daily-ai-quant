@@ -92,7 +92,7 @@ def evaluate_quant_factors(
         momentum_score += 10.0
 
     # 2. 價值因子 (30%)：以均線回檔幅度與價格穩健度模擬
-    distance_to_ma20 = (latest_close - ma20) / ma20
+    distance_to_ma20 = (latest_close - ma20) / ma20 if ma20 > 0 else 0.0
     if -0.05 <= distance_to_ma20 <= 0.05:
         value_score = 30.0
     elif distance_to_ma20 > 0.05:
