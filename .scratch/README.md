@@ -9,7 +9,7 @@
 
 | 執行序 | 卡片編號 | 優先級 | 任務名稱 | 權責模組 | 前置依賴 | 分流標籤 |
 | :---: | :--- | :---: | :--- | :--- | :---: | :--- |
-| **#1** | **[CARD-01](./CARD-01_INFRA_Gemini_Key_Pool.md)** | **P0** | 環境配置與 API 金鑰池管理 | `src/c01_config.py` | 無 | `ready-for-agent` |
+| **#1** | **[CARD-01](./CARD-01_INFRA_Gemini_Key_Pool.md)** | **P0** | 環境配置與 API 金鑰池管理 | `src/c01_config.py` | 無 | `done` |
 | **#2** | **[CARD-02](./CARD-02_DATA_Market_Fetcher.md)** | **P0** | 雙市場資料下載與除權息還原 | `src/c02_data_fetcher.py` | CARD-01 | `ready-for-agent` |
 | **#3** | **[CARD-03](./CARD-03_MACRO_Market_Radar.md)** | **P1** | 大盤雷達與防空警報模組 | `src/c03_macro_radar.py` | CARD-02 | `ready-for-agent` |
 | **#4** | **[CARD-04](./CARD-04_QUANT_Multi_Factor_RRR.md)** | **P1** | 多因子評分與風報比計算引擎 | `src/c04_quant_engine.py` | CARD-02 | `ready-for-agent` |
