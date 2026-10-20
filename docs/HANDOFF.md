@@ -21,6 +21,7 @@
 | **產品規格 (PRD)** | [`docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md`](./spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md) | 包含 5 大功能需求與 6 項驗收標準。 |
 | **架構決策 (ADR)** | [`docs/adr/CARD-ADR-0001_Daily_Stock_Quant_System_Architecture.md`](./adr/CARD-ADR-0001_Daily_Stock_Quant_System_Architecture.md) | 包含 8 大核心決策推演歷程。 |
 | **技術寫作標準** | [`docs/standards/simplified-technical-chinese.md`](./standards/simplified-technical-chinese.md) | STE-TW 簡化技術中文規則。 |
+| **Git 工作流規範** | [`docs/standards/git-workflow.md`](./standards/git-workflow.md) | 分支開發、本地雙門禁、CI 與大掃除 SOP。 |
 | **任務分流看板** | [`.scratch/README.md`](../.scratch/README.md) | CARD-01 至 CARD-08 全部標記為 `done`。 |
 | **展示儀表板** | [`docs/index.html`](./index.html) | 現代深色響應式戰情室前端。 |
 

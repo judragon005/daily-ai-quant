@@ -1,12 +1,15 @@
 # Python
 __pycache__/
 *.py[cod]
-*.class
+*$py.class
 *.env
 .env.*
 .venv/
 venv/
 ENV/
+.pytest_cache/
+.coverage
+htmlcov/
 
 # OS
 .DS_Store
@@ -16,3 +19,6 @@ Thumbs.db
 .cache/
 temp/
 *.log
+
+# Git workflow temp
+.git_commit_msg.txt
