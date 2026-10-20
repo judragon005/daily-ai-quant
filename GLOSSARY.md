@@ -7,3 +7,4 @@
 | **興登堡做空一票否決** | **Hindenburg Audit** | 扮演兇殘做空機構，強制審問財務暴雷、造假隱憂、大股東出逃或致命競爭。若觸發紅旗直接予以剔除。 |
 | **大摩 1% 倉位數學** | **1% Risk Position Sizing** | 單筆交易最大容許損失嚴格鎖定在總資本 1% 以內：買進股數 = (總資本 * 1%) / (現價 - 停損價)。 |
 | **API Key 池** | **API Key Pool / Rotation** | 輪詢多個免費 Gemini API Keys，分散請求頻率，規避 15 RPM 限制並達成 100% 免費運作。 |
+| **卡片式記憶法管理** | **Card-Index Management (Zettelkasten)** | 檔案與票券命名一律採用「卡片編號 + 語意標籤 + 模組名稱」，如 CARD-01_基礎設施與Key池.md、c01_config.py，實現一眼辨識、記憶錨定與網狀索引。 |
