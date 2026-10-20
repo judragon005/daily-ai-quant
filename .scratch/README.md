@@ -11,12 +11,12 @@
 | :---: | :--- | :---: | :--- | :--- | :---: | :--- |
 | **#1** | **[CARD-01](./CARD-01_INFRA_Gemini_Key_Pool.md)** | **P0** | 環境配置與 API 金鑰池管理 | `src/c01_config.py` | 無 | `done` |
 | **#2** | **[CARD-02](./CARD-02_DATA_Market_Fetcher.md)** | **P0** | 雙市場資料下載與除權息還原 | `src/c02_data_fetcher.py` | CARD-01 | `done` |
-| **#3** | **[CARD-03](./CARD-03_MACRO_Market_Radar.md)** | **P1** | 大盤雷達與防空警報模組 | `src/c03_macro_radar.py` | CARD-02 | `ready-for-agent` |
-| **#4** | **[CARD-04](./CARD-04_QUANT_Multi_Factor_RRR.md)** | **P1** | 多因子評分與風報比計算引擎 | `src/c04_quant_engine.py` | CARD-02 | `ready-for-agent` |
-| **#5** | **[CARD-05](./CARD-05_AI_Hindenburg_Audit.md)** | **P1** | Gemini 機構審查與風險否決 | `src/c05_ai_auditor.py` | CARD-01, CARD-04 | `ready-for-agent` |
-| **#6** | **[CARD-06](./CARD-06_DELIVERY_Telegram_Card.md)** | **P2** | Telegram 晨報摘要推播模組 | `src/c06_telegram_notifier.py` | CARD-03, CARD-05 | `ready-for-agent` |
-| **#7** | **[CARD-07](./CARD-07_DASHBOARD_Web_UI.md)** | **P2** | 儀表板資料產生器與展示頁面 | `docs/index.html & src/c07_dashboard_builder.py` | CARD-03, CARD-05 | `ready-for-agent` |
-| **#8** | **[CARD-08](./CARD-08_WORKFLOW_GitHub_Actions.md)** | **P3** | GitHub Actions 錯峰排程與防護 | `.github/workflows/daily_quant.yml` | CARD-01 ~ CARD-07 | `ready-for-agent` |
+| **#3** | **[CARD-03](./CARD-03_MACRO_Market_Radar.md)** | **P1** | 大盤雷達與防空警報模組 | `src/c03_macro_radar.py` | CARD-02 | `done` |
+| **#4** | **[CARD-04](./CARD-04_QUANT_Multi_Factor_RRR.md)** | **P1** | 多因子評分與風報比計算引擎 | `src/c04_quant_engine.py` | CARD-02 | `done` |
+| **#5** | **[CARD-05](./CARD-05_AI_Hindenburg_Audit.md)** | **P1** | Gemini 機構審查與風險否決 | `src/c05_ai_auditor.py` | CARD-01, CARD-04 | `done` |
+| **#6** | **[CARD-06](./CARD-06_DELIVERY_Telegram_Card.md)** | **P2** | Telegram 晨報摘要推播模組 | `src/c06_telegram_notifier.py` | CARD-03, CARD-05 | `done` |
+| **#7** | **[CARD-07](./CARD-07_DASHBOARD_Web_UI.md)** | **P2** | 儀表板資料產生器與展示頁面 | `docs/index.html & src/c07_dashboard_builder.py` | CARD-03, CARD-05 | `done` |
+| **#8** | **[CARD-08](./CARD-08_WORKFLOW_GitHub_Actions.md)** | **P3** | GitHub Actions 錯峰排程與防護 | `.github/workflows/daily_quant.yml` | CARD-01 ~ CARD-07 | `done` |
 | **H1** | **SECRETS-CONFIG** | **P0** | 配置 GitHub 儲存庫 Secrets 金鑰 | Repository Settings | CARD-08 | `ready-for-human` |
 
 ---

@@ -1,0 +1,69 @@
+name: 每日機構級 AI 股票量化自動化排程
+
+on:
+  schedule:
+    # 台灣時間 16:17 盤後執行台股 (UTC 08:17)
+    - cron: '17 8 * * 1-5'
+    # 台灣時間 05:23 盤後執行美股 (UTC 21:23)
+    - cron: '23 21 * * 1-5'
+  workflow_dispatch:
+    inputs:
+      market:
+        description: '選擇執行市場 (TW 或 US)'
+        required: true
+        default: 'TW'
+        type: choice
+        options:
+          - TW
+          - US
+
+jobs:
+  daily-scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+
+    steps:
+      - name: 檢出專案程式碼
+        uses: actions/checkout@v4
+
+      - name: 設定 Python 3.11 環境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: 安裝相依套件
+        run: |
+          python -m pip install --upgrade pip
+          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+      - name: 執行單元測試門禁
+        run: |
+          python -m pytest tests/
+
+      - name: 判斷執行市場並執行量化工作流
+        env:
+          GEMINI_API_KEYS: ${{ secrets.GEMINI_API_KEYS }}
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+        run: |
+          MARKET="TW"
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            MARKET="${{ inputs.market }}"
+          elif [ "${{ github.event.schedule }}" = "23 21 * * 1-5" ]; then
+            MARKET="US"
+          fi
+          echo "執行市場：$MARKET"
+          python main.py --market "$MARKET"
+
+      - name: 提交並推送最新數據至 GitHub Pages
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/data/
+          if git diff --staged --quiet; then
+            echo "無新資料需要提交。"
+          else
+            git commit -m "chore(data): automated daily quant data update [skip ci]"
+            git push
+          fi

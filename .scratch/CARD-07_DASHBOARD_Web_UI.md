@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-07
 - **對應模組**: `src/c07_dashboard_builder.py` 與 `docs/index.html`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-5.2)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -30,7 +30,7 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (資料結構合格)**：產出的 JSON 檔案能被有效解析。必要欄位無缺漏。
-- [ ] **AC-2 (分頁切換正常)**：於瀏覽器開啟 `docs/index.html`。點擊台美股切換按鈕，資料正確更換。
-- [ ] **AC-3 (響應式呈現)**：模擬手機寬度 (375px)。表格支援橫向捲動，排版不破版。
-- [ ] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c07_dashboard_builder.py`。測試全部通過。
+- [x] **AC-1 (資料結構合格)**：產出的 JSON 檔案能被有效解析。必要欄位無缺漏。
+- [x] **AC-2 (分頁切換正常)**：於瀏覽器開啟 `docs/index.html`。點擊台美股切換按鈕，資料正確更換。
+- [x] **AC-3 (響應式呈現)**：模擬手機寬度 (375px)。表格支援橫向捲動，排版不破版。
+- [x] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c07_dashboard_builder.py`。測試全部通過。

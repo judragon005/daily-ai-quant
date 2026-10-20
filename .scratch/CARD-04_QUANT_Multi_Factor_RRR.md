@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-04
 - **對應模組**: `src/c04_quant_engine.py`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-3)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -33,7 +33,7 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (分數邊界)**：傳入股票資料集。所有標的多因子總分介於 0 到 100 之間。
-- [ ] **AC-2 (風報比約束)**：計算產出之點位。所有標的之風報比嚴格等於 2.0。
-- [ ] **AC-3 (部位風險限制)**：計算部位結果。單筆停損金額不大於總資本的 1%。
-- [ ] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c04_quant_engine.py`。測試全部通過。
+- [x] **AC-1 (分數邊界)**：傳入股票資料集。所有標的多因子總分介於 0 到 100 之間。
+- [x] **AC-2 (風報比約束)**：計算產出之點位。所有標的之風報比嚴格等於 2.0。
+- [x] **AC-3 (部位風險限制)**：計算部位結果。單筆停損金額不大於總資本的 1%。
+- [x] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c04_quant_engine.py`。測試全部通過。

@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-03
 - **對應模組**: `src/c03_macro_radar.py`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-2)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -33,7 +33,7 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (均線計算)**：傳入 60 日歷史數據。系統正確計算 MA60 數值。
-- [ ] **AC-2 (多空狀態判定)**：模擬指數低於 MA60 情境。回傳值 `is_bearish` 必須為 True。
-- [ ] **AC-3 (警示格式)**：空頭狀態下。系統產出包含「空頭防守警戒」字樣之字串。
-- [ ] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c03_macro_radar.py`。測試全部通過。
+- [x] **AC-1 (均線計算)**：傳入 60 日歷史數據。系統正確計算 MA60 數值。
+- [x] **AC-2 (多空狀態判定)**：模擬指數低於 MA60 情境。回傳值 `is_bearish` 必須為 True。
+- [x] **AC-3 (警示格式)**：空頭狀態下。系統產出包含「空頭防守警戒」字樣之字串。
+- [x] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c03_macro_radar.py`。測試全部通過。

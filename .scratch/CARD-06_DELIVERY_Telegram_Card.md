@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-06
 - **對應模組**: `src/c06_telegram_notifier.py`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-5.1)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -30,7 +30,7 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (字數門禁)**：產生完整 20 檔股票之推播字串。長度驗證小於 3500 字元。
-- [ ] **AC-2 (格式解析)**：模擬推播發布。Markdown 特殊符號（如 `_`, `*`, `[`）經過正確轉義。
-- [ ] **AC-3 (重試容錯)**：模擬網路連線異常。系統自動重試並記錄日誌。
-- [ ] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c06_telegram_notifier.py`。測試全部通過。
+- [x] **AC-1 (字數門禁)**：產生完整 20 檔股票之推播字串。長度驗證小於 3500 字元。
+- [x] **AC-2 (格式解析)**：模擬推播發布。Markdown 特殊符號（如 `_`, `*`, `[`）經過正確轉義。
+- [x] **AC-3 (重試容錯)**：模擬網路連線異常。系統自動重試並記錄日誌。
+- [x] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c06_telegram_notifier.py`。測試全部通過。

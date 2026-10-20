@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>每日機構級 AI 股票量化戰情儀表板</title>
+  <style>
+    :root {
+      --bg-dark: #0f172a;
+      --card-bg: #1e293b;
+      --card-border: #334155;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --primary: #38bdf8;
+      --success: #4ade80;
+      --danger: #f87171;
+      --accent: #fbbf24;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.5;
+      padding: 16px;
+    }
+    .container { max-width: 1200px; margin: 0 auto; }
+    header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 20px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    h1 { font-size: 1.5rem; font-weight: 700; color: var(--primary); }
+    .updated-time { font-size: 0.85rem; color: var(--text-muted); }
+    
+    .tab-bar {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .tab-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--card-border);
+      background: var(--card-bg);
+      color: var(--text-muted);
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 0.95rem;
+      font-weight: 600;
+      transition: all 0.2s ease;
+    }
+    .tab-btn.active {
+      background: var(--primary);
+      color: #0f172a;
+      border-color: var(--primary);
+    }
+
+    .radar-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .radar-title { font-weight: 600; font-size: 1.1rem; }
+    .badge {
+      padding: 4px 10px;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .badge-bull { background: rgba(74, 222, 128, 0.15); color: var(--success); }
+    .badge-bear { background: rgba(248, 113, 113, 0.15); color: var(--danger); }
+
+    .table-container {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 0.9rem;
+    }
+    th, td {
+      padding: 12px 14px;
+      border-bottom: 1px solid var(--card-border);
+    }
+    th {
+      background: rgba(15, 23, 42, 0.6);
+      color: var(--text-muted);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+    tr:hover { background: rgba(255, 255, 255, 0.03); }
+    .score-badge {
+      font-weight: 700;
+      color: var(--accent);
+    }
+    .stock-code { font-family: monospace; font-weight: 600; font-size: 1rem; color: var(--primary); }
+    .comment-text { color: var(--text-muted); font-size: 0.85rem; max-width: 320px; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>🏛️ 每日機構級 AI 股票量化戰情室</h1>
+        <div class="updated-time" id="updatedTime">資料載入中...</div>
+      </div>
+      <div class="tab-bar">
+        <button class="tab-btn active" id="btnTw" onclick="switchMarket('TW')">🇹🇼 台股 Top 20</button>
+        <button class="tab-btn" id="btnUs" onclick="switchMarket('US')">🇺🇸 美股 Top 20</button>
+      </div>
+    </header>
+
+    <div class="radar-card" id="radarCard">
+      <div>
+        <div class="radar-title" id="radarTitle">大盤雷達加載中...</div>
+        <div id="radarDetail" style="color: var(--text-muted); font-size: 0.9rem; margin-top: 4px;">--</div>
+      </div>
+      <div id="radarBadge">--</div>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>名次</th>
+            <th>股票標的</th>
+            <th>多因子評分</th>
+            <th>現價 / 進場</th>
+            <th>停損價</th>
+            <th>目標價</th>
+            <th>風報比 (RRR)</th>
+            <th>機構審查點評</th>
+          </tr>
+        </thead>
+        <tbody id="stocksTbody">
+          <tr><td colspan="8" style="text-align: center; padding: 24px;">載入中...</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <script>
+    let currentMarket = 'TW';
+
+    async function loadData(market) {
+      currentMarket = market;
+      document.getElementById('btnTw').classList.toggle('active', market === 'TW');
+      document.getElementById('btnUs').classList.toggle('active', market === 'US');
+      
+      const file = market === 'TW' ? 'data/latest_tw.json' : 'data/latest_us.json';
+      try {
+        const res = await fetch(file);
+        if (!res.ok) throw new Error("尚未產出本日資料");
+        const data = await res.json();
+        renderDashboard(data);
+      } catch (err) {
+        document.getElementById('stocksTbody').innerHTML = `<tr><td colspan="8" style="text-align: center; color: var(--danger); padding: 30px;">⚠️ ${err.message} (請先執行排程任務)</td></tr>`;
+      }
+    }
+
+    function renderDashboard(data) {
+      document.getElementById('updatedTime').textContent = `更新時間: ${data.updated_at || '--'}`;
+      
+      const macro = data.macro || {};
+      document.getElementById('radarTitle').textContent = macro.index_name || '大盤指標';
+      document.getElementById('radarDetail').textContent = `現價: ${macro.current_price} | 季線 (MA60): ${macro.ma60}`;
+      
+      const badge = document.getElementById('radarBadge');
+      if (macro.is_bearish) {
+        badge.className = 'badge badge-bear';
+        badge.textContent = '⚠️ 空頭防守警戒';
+      } else {
+        badge.className = 'badge badge-bull';
+        badge.textContent = '🟢 正常多頭格局';
+      }
+
+      const tbody = document.getElementById('stocksTbody');
+      tbody.innerHTML = '';
+      (data.stocks || []).forEach((stock, idx) => {
+        const rrr = stock.rrr_levels || {};
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${idx + 1}</td>
+          <td><span class="stock-code">${stock.symbol}</span></td>
+          <td><span class="score-badge">${stock.total_score}</span></td>
+          <td>${rrr.entry_price || '--'}</td>
+          <td style="color: var(--danger);">${rrr.stop_loss || '--'}</td>
+          <td style="color: var(--success);">${rrr.take_profit || '--'}</td>
+          <td><strong>${rrr.rrr || '2.0'}</strong></td>
+          <td class="comment-text">${stock.audit_comment || '--'}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    function switchMarket(m) {
+      loadData(m);
+    }
+
+    // 預設載入台股
+    loadData('TW');
+  </script>
+</body>
+</html>

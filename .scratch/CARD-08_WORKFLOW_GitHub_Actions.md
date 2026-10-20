@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-08
 - **對應模組**: `.github/workflows/daily_quant.yml`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-1, FR-5)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -30,6 +30,6 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (YAML 語法校驗)**：Workflow YAML 語法合法無誤。
-- [ ] **AC-2 (迴圈防護標籤)**：Git Commit 步驟必定帶有 `[skip ci]` 標記。
-- [ ] **AC-3 (執行時間限制)**：工作流設定超時限制。執行時間不超過免費配額。
+- [x] **AC-1 (YAML 語法校驗)**：Workflow YAML 語法合法無誤。
+- [x] **AC-2 (迴圈防護標籤)**：Git Commit 步驟必定帶有 `[skip ci]` 標記。
+- [x] **AC-3 (執行時間限制)**：工作流設定超時限制。執行時間不超過免費配額。
