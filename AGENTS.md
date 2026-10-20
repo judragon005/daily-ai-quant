@@ -18,3 +18,6 @@ eady-for-human、wontfix。詳見 docs/agents/triage-labels.md。
 
 ### Domain docs
 採用單一上下文 (Single-context) 佈局，通用術語定義於根目錄 GLOSSARY.md，架構決策紀錄於 docs/adr/。詳見 docs/agents/domain.md。
+
+### Technical writing standard
+所有規格書、架構決策紀錄及系統文件，強制遵循「80% 簡化技術中文規範 (STE-TW)」。專為台灣使用者設計，採用標準繁體中文資訊術語、短句結構（程序 ≤ 20 字、描述 ≤ 25 字）、動詞主動語態，杜絕冗贅英文與模糊形容詞。詳見 docs/standards/simplified-technical-chinese.md。
