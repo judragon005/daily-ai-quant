@@ -2,7 +2,7 @@
 
 - **卡片編號**: CARD-02
 - **對應模組**: `src/c02_data_fetcher.py`
-- **狀態**: `ready-for-agent`
+- **狀態**: `done`
 - **對應規格**: [CARD-SPEC-0001 (FR-1)](../docs/spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md)
 - **寫作規範**: [STE-TW 規範](../docs/standards/simplified-technical-chinese.md)
 
@@ -29,7 +29,7 @@
 
 ## 3. 驗收標準 (Acceptance Criteria)
 
-- [ ] **AC-1 (除權息還原)**：下載包含除權息股票歷史資料。檢查收盤價序列無人為斷崖。
-- [ ] **AC-2 (流動性篩選)**：傳入測試股票清單。系統正確剔除低成交量與雞蛋水餃股。
-- [ ] **AC-3 (休市退出)**：傳入歷史資料模擬非交易日。程式偵測休市並回傳 True。
-- [ ] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c02_data_fetcher.py`。測試全部通過。
+- [x] **AC-1 (除權息還原)**：下載包含除權息股票歷史資料。檢查收盤價序列無人為斷崖。
+- [x] **AC-2 (流動性篩選)**：傳入測試股票清單。系統正確剔除低成交量與雞蛋水餃股。
+- [x] **AC-3 (休市退出)**：傳入歷史資料模擬非交易日。程式偵測休市並回傳 True。
+- [x] **AC-4 (單元測試覆蓋)**：撰寫單元測試 `tests/test_c02_data_fetcher.py`。測試全部通過。
