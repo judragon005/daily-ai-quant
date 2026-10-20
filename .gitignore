@@ -1,0 +1,18 @@
+# Python
+__pycache__/
+*.py[cod]
+*.class
+*.env
+.env.*
+.venv/
+venv/
+ENV/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Reports raw temp cache (keep generated reports/ & docs/ in git)
+.cache/
+temp/
+*.log
