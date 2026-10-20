@@ -5,6 +5,9 @@ Date: 2026-10-20
 ## Status
 Accepted
 
+## 對應規格書 (Specification)
+- [CARD-SPEC-0001](../spec/CARD-SPEC-0001_每日機構級AI股票量化系統規格書.md)
+
 ## Context
 本系統需要在每日台股與美股收盤後，於隔晨 08:00 前自動化產出 20 檔兼具 0-100 量化高分、風報比 $\ge 2.0$ 且通過機構做空審判的可投資標的，並推播至 Telegram 與發布至 GitHub Pages。
 需兼顧 100% 免費、避免 GitHub Actions 封號與 API Rate Limit。
