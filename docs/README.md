@@ -1,19 +1,20 @@
-# 📚 專案工程文檔雙向追蹤矩陣 (Documentation Traceability Matrix)
+# 📚 專案工程文檔 1-to-1 雙向追蹤矩陣 (Traceability Matrix)
 
-本專案採用**卡片式記憶法 (Card-Index)** 管理架構決策紀錄 (ADR) 與需求規格書 (Spec)，確保「決策原因 (Why)」與「實施規格 (What/How)」100% 雙向對應可追蹤。
+本專案貫徹**「單一規格書 (Spec) 1-to-1 完美對應單一架構決策紀錄 (ADR)」**原則：
+- **CARD-SPEC (What & How)**：定義最終落地的系統邊界、輸入輸出介面與詳細驗收標準。
+- **CARD-ADR (Why & History)**：記錄在同一會話中，透過多次深度對話與辯論演進出的全部推演歷程與決策共識。
 
 ---
 
-## 🗂️ ADR ⇄ 規格書 橫向對照表
+## 🗂️ 1-to-1 核心對應表
 
-| 卡片編號 (Card ID) | 架構決策紀錄 (ADR - 決策原因 Why) | 對應需求規格書 (Spec - 實施規範 What/How) | 核心規範範疇 |
+| 卡片編號 (Card ID) | 需求規格書 (Spec - What/How) | 架構決策紀錄 (ADR - Why & Trail) | 包含的歷程里程碑 |
 | :--- | :--- | :--- | :--- |
-| **CARD-0001** | [CARD-ADR-0001_Dual_Track_Architecture](./adr/CARD-ADR-0001_Dual_Track_Architecture.md) | [CARD-SPEC-0001_Daily_Stock_Quant_System](./spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md) | 雙軌量化仲裁、GitHub Actions 防封號機制、雙通道交付 |
-| **CARD-0002** | [CARD-ADR-0002_Microstructure_Guardrails](./adr/CARD-ADR-0002_Microstructure_Guardrails.md) | [CARD-SPEC-0001_Daily_Stock_Quant_System](./spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md) | 除權息復權還原 (uto_adjust=True)、大盤季線溫度計、休市日阻斷、向下整張截斷 |
+| **CARD-0001** | [CARD-SPEC-0001_Daily_Stock_Quant_System](./spec/CARD-SPEC-0001_Daily_Stock_Quant_System.md) | [CARD-ADR-0001_Daily_Stock_Quant_System_Architecture](./adr/CARD-ADR-0001_Daily_Stock_Quant_System_Architecture.md) | 包含 8 輪決策演進：環境選型 ➔ 股票母池 ➔ 雙軌仲裁 ➔ 交付通道 ➔ Key池 ➔ 防封號 ➔ 專案隔離 ➔ 拒絕過度工程化 (KISS) |
 
 ---
 
-## 📂 資料夾職責劃分
-- **docs/spec/ (規格書資料夾)**：存放具體的產品需求、系統邊界、輸入輸出介面與詳細驗收標準 (Acceptance Criteria)。
-- **docs/adr/ (架構決策紀錄資料夾)**：存放重大技術選型與架構考量背後的「決策動機 (Context)」、「權衡 (Trade-offs)」與「影響 (Consequences)」。
-- **docs/agents/ (Agent 配置資料夾)**：存放 Agent Skills 所需的環境約束 (Issue Tracker, Triage 標籤, 領域架構)。
+## 📂 目錄架構
+- **docs/spec/**：存放實施標準規格書。
+- **docs/adr/**：存放推演歷程與決策動機。
+- **docs/agents/**：存放 Agent Skills 環境約定。

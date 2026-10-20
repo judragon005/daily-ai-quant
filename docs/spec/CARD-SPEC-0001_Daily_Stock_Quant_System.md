@@ -6,7 +6,7 @@
 - **狀態**: Approved (已核准)
 - **依據文檔**: 《華爾街級 AI 股票研究流程與實戰風控指南》、《ADR-0001》
 
-> **關聯架構決策 (ADR)**: [CARD-ADR-0001](../adr/CARD-ADR-0001_採納雙軌量化與防封號架構.md)
+> **關聯架構決策 (ADR)**: [CARD-ADR-0001](../adr/CARD-ADR-0001_Daily_Stock_Quant_System_Architecture.md)
 
 ---
 
